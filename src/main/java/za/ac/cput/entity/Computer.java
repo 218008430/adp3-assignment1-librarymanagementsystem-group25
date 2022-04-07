@@ -1,28 +1,27 @@
-/* Library.java
-Entity for Library
-Author: Ethan George(218008430)
-Date: 28 March 2022
-*/
-
 package za.ac.cput.entity;
+
+
+/*
+   Ethan George (218008430)
+   ADP3 - Assignment 1: Group 25
+   Date: 28 March 2022
+ */
 
 public class Computer {
 
 
-    private String computerId;
-    private String computerBrand;
-    private String computerStatus;
+    private  String computerId;
+    private String brandName;
+    private String status;
+    private Object libraryId;
 
 
-    public Computer(String computerId, String computerBrand, String computerStatus) {
-        this.computerId = computerId;
-        this.computerBrand = computerBrand;
-        this.computerStatus = computerStatus;
+    public Computer(Builder b) {
+        this.computerId = b.computerId;
+        this.brandName = b.brandName;
+        this.status = b.status;
+
     }
-
-    public Computer(Computer computer) {
-    }
-
 
     public String getComputerId() {
         return computerId;
@@ -32,47 +31,79 @@ public class Computer {
         this.computerId = computerId;
     }
 
-    public String getComputerBrand() {
-        return computerBrand;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setComputerBrand(String computerBrand) {
-        this.computerBrand = computerBrand;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
-    public String getComputerStatus() {
-        return computerStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setComputerStatus(String computerStatus) {
-        this.computerStatus = computerStatus;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Object getLibraryId() {
+        return libraryId;
+    }
+
+    public void setLibraryId(Object libraryId) {
+        this.libraryId = libraryId;
     }
 
     @Override
     public String toString() {
         return "Computer{" +
                 "computerId='" + computerId + '\'' +
-                ", computerBrand='" + computerBrand + '\'' +
-                ", computerStatus='" + computerStatus + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", status='" + status + '\'' +
+                ", libraryId=" + libraryId +
                 '}';
     }
 
-    public static class ComputerBuilder{
 
-        private String libraryId;
-        private String libraryName;
-        private String libraryLocation;
-        private String libraryAddress;
+    public static  class Builder{
+
+
+        private String computerId;
+        private String brandName;
+        private String status;
+
+
+        public Builder setComputerId(String computerId) {
+            this.computerId = computerId;
+            return this;
+        }
+
+        public Builder setBrandName(String brandName) {
+            this.brandName = brandName;
+            return this;
+        }
+
+        public Builder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+
+
+        public Builder ComputerCopy(Computer c) {
+            this.computerId = c.computerId;
+            this.brandName = c.brandName;
+            this.status = c.status;
+
+
+            return this;
+        }
+
+        public Computer build(){
+            return new Computer(this);
+        }
+
+
     }
-
-
-
-
-
-    public Computer build(){
-        Computer computer = new Computer(  this);
-        return computer;
-    }
-
 }
-
